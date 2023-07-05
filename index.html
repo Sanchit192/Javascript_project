@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Index
+        </title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+         <script src="https://kit.fontawesome.com/d2b4c96d6c.js" crossorigin="anonymous"></script>
+         <style>
+          body {
+            
+            background-color: #FAFAFA;
+          }
+          
+          .sidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #F4F4F4;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 6px;
+           
+          }
+          
+          .sidenav a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+          }
+          
+          .sidenav a:hover {
+            color: #f1f1f1;
+          }
+          
+          .sidenav .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+          }
+          
+          #main {
+            transition: margin-left .5s;
+            padding: 16px;
+            display: block;
+            align-items: center;
+          }
+          
+          @media screen and (max-height: 450px) {
+            .sidenav {padding-top: 15px;}
+            .sidenav a {font-size: 18px;}
+          }
+          .task-item{
+            background-color: #f4f4f4;
+          }
+          </style>
+    </head>
+    <body>
+      <div id="mySidenav" class="sidenav " class="container ">
+       <section class="mb-3">
+        <h1 class="mb-3">Menu</h1>
+        <form class="form-inline my-2 my-lg-0">
+          <span class="input-group-text"><i class="fa fa-search"></i>
+      <input type="text" class="form-control" placeholder="Search..">
+          </span>
+        </form>
+       </section>
+        <section>
+          <h3>Tasks</h3>
+          <div class="m-2" onclick="display()"><span><i class="fa fa-angles-right"></i>Upcomimg</span><br></div>
+         <div class="m-2" onclick="display2()">
+          <span><i class="fa-solid fa-check-to-slot"></i>Today</span><br>
+
+         </div>
+         <div class="m-2">
+          <span><i class="fa-regular fa-calendar"></i>Calendar</span><br>
+         </div>
+         
+
+        </section>
+        <hr>
+        <section>
+          <h3>Tags</h3>
+          <button class="btn btn-danger" class="rounded">Tag 1</button>
+          <button class=" btn btn-light">Tag 2</button>
+          <button class=" btn btn-secondary">Add Tag</button>
+        </section>
+        
+
+        
+      </div>
+      
+      <div id="main">
+        
+        <span  ><i class="fa fa-bars fa-2x" onclick="toggleNav()"></i></span>
+        <H1 style="display:flex; justify-content: center; color: #818181;" >WELCOME, Schedule Your Tasks </H1>
+        <div class="container p-5" style="display: none;" id="t1">
+          <h1>Today</h1>
+          <div class="input-group">
+            <input type="text" class="form-control" id="taskInput" placeholder="Enter a new task">
+            <button class="btn btn-secondary" onclick="addTask()"><i class="fa-solid fa-plus"></i> Add new Task</button>
+          </div>
+          <div id="taskList" class="list-group "></div>
+        </div>
+        <div class="container p-5" style="display: none;" id="up">
+          <h1>Upcomimg</h1>
+          <div class="input-group">
+            <input type="text" class="form-control" id="taskInput1" placeholder="Enter a new task">
+            <button class="btn btn-secondary" onclick="addTask1()"><i class="fa-solid fa-plus"></i> Add new Task</button>
+          </div>
+          <div id="taskList1" class="list-group "></div>
+        </div>
+      
+      </div>
+      
+      <script>
+      function toggleNav() {
+        var sideNavWidth = document.getElementById("mySidenav").style.width;
+        if (sideNavWidth === "250px") {
+          closeNav();
+        } else {
+          openNav();
+        }
+      }
+      
+      function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+      }
+      
+      function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("main").style.marginLeft= "0";
+      }
+      function display(){
+        document.getElementById("up").style.display="block";
+      }
+      function display2(){
+        document.getElementById("t1").style.display="block";
+      }
+//       function addTask() {
+//   // Get the input value
+//   var itemInput = document.getElementById("taskInput");
+//   var itemText = itemInput.value;
+
+//   // Check if the input is not empty
+//   if (itemText.trim() !== "") {
+//     // Create a new list item
+//     var newItem = document.createElement("div");
+//     newItem.className = "list-item";
+
+//     // Create a checkbox
+//     var checkbox = document.createElement("input");
+//     checkbox.type = "checkbox";
+  
+//     checkbox.addEventListener("change", removeItem);
+//     newItem.appendChild(checkbox);
+
+//     // Create a label for the item
+//     var label = document.createElement("label");
+//     label.textContent = itemText;
+//     newItem.appendChild(label);
+
+//     // Add the new item to the list
+//     var list = document.getElementById("taskList");
+//     list.appendChild(newItem);
+
+//     // Clear the input
+//     itemInput.value = "";
+//   }
+  
+// }
+// function removeItem(event) {
+//   var checkbox = event.target;
+//   var listItem = checkbox.parentNode;
+//   listItem.remove();
+// }
+function addTask() {
+      var taskInput = document.getElementById("taskInput");
+      var taskList = document.getElementById("taskList");
+
+      if (taskInput.value !== "") {
+        var li = document.createElement("li");
+        li.className = "list-group-item task-item";
+        
+        var taskText = document.createElement("div");
+        taskText.className = "task-text h5";
+        taskText.appendChild(document.createTextNode(taskInput.value));
+        li.appendChild(taskText);
+        
+        var taskActions = document.createElement("div");
+        taskActions.className = "task-actions mt-3";
+        
+        var removeBtn = document.createElement("button");
+        removeBtn.className = "btn btn-danger me-3";
+        removeBtn.appendChild(document.createTextNode("Remove"));
+        removeBtn.addEventListener("click", function() {
+          li.remove();
+        });
+        taskActions.appendChild(removeBtn);
+        
+        var doneBtn = document.createElement("button");
+        doneBtn.className = "btn btn-success me-3";
+        doneBtn.appendChild(document.createTextNode("Done"));
+        doneBtn.addEventListener("click", function() {
+          taskText.classList.toggle("text-decoration-line-through");
+        });
+        taskActions.appendChild(doneBtn);
+        
+        var editBtn = document.createElement("button");
+        editBtn.className = "btn btn-secondary me-3";
+        editBtn.appendChild(document.createTextNode("Edit"));
+        editBtn.addEventListener("click", function() {
+          var newText = prompt("Edit task:", taskText.innerText);
+          if (newText !== null) {
+            taskText.innerText = newText;
+          }
+        });
+        taskActions.appendChild(editBtn);
+        
+        li.appendChild(taskActions);
+        
+        taskList.appendChild(li);
+        taskInput.value = "";
+      }
+    }
+
+    function addTask1() {
+      var taskInput = document.getElementById("taskInput1");
+      var taskList = document.getElementById("taskList1");
+
+      if (taskInput.value !== "") {
+        var li = document.createElement("li");
+        li.className = "list-group-item task-item";
+        
+        var taskText = document.createElement("div");
+        taskText.className = "task-text h5";
+        taskText.appendChild(document.createTextNode(taskInput.value));
+        li.appendChild(taskText);
+        
+        var taskActions = document.createElement("div");
+        taskActions.className = "task-actions mt-3";
+        
+        var removeBtn = document.createElement("button");
+        removeBtn.className = "btn btn-danger me-3";
+        removeBtn.appendChild(document.createTextNode("Remove"));
+        removeBtn.addEventListener("click", function() {
+          li.remove();
+        });
+        taskActions.appendChild(removeBtn);
+        
+        var doneBtn = document.createElement("button");
+        doneBtn.className = "btn btn-success me-3";
+        doneBtn.appendChild(document.createTextNode("Done"));
+        doneBtn.addEventListener("click", function() {
+          taskText.classList.toggle("text-decoration-line-through");
+        });
+        taskActions.appendChild(doneBtn);
+        
+        var editBtn = document.createElement("button");
+        editBtn.className = "btn btn-secondary me-3";
+        editBtn.appendChild(document.createTextNode("Edit"));
+        editBtn.addEventListener("click", function() {
+          var newText = prompt("Edit task:", taskText.innerText);
+          if (newText !== null) {
+            taskText.innerText = newText;
+          }
+        });
+        taskActions.appendChild(editBtn);
+        
+        li.appendChild(taskActions);
+        
+        taskList.appendChild(li);
+        taskInput.value = "";
+      }
+    }
+
+
+      </script>
+    </body>
+</html>
