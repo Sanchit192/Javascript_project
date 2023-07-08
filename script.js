@@ -62,10 +62,12 @@ function toggleNav() {
 function addTask() {
   var taskInput = document.getElementById("taskInput");
   var taskList = document.getElementById("taskList");
+  let numberOfNodes = taskList.childNodes.length;
 
   if (taskInput.value !== "") {
     var li = document.createElement("li");
     li.className = "list-group-item task-item";
+    li.id=`task-${numberOfNodes+1}`
     
     var taskText = document.createElement("div");
     taskText.className = "task-text h5";
@@ -79,7 +81,7 @@ function addTask() {
     removeBtn.className = "btn btn-danger me-3";
     removeBtn.appendChild(document.createTextNode("Remove"));
     removeBtn.addEventListener("click", function() {
-      li.remove();
+      removeNode(li.id)
     });
     taskActions.appendChild(removeBtn);
     
@@ -87,7 +89,7 @@ function addTask() {
     doneBtn.className = "btn btn-success me-3";
     doneBtn.appendChild(document.createTextNode("Done"));
     doneBtn.addEventListener("click", function() {
-      taskText.classList.toggle("text-decoration-line-through");
+      taskText.className="text-decoration-line-through";
     });
     taskActions.appendChild(doneBtn);
     
@@ -101,12 +103,29 @@ function addTask() {
       }
     });
     taskActions.appendChild(editBtn);
+
+    
+    var schedule= document.createElement("button");
+    schedule.className = "btn btn-primary me-3";
+    schedule.appendChild(document.createTextNode("Schedule"));
+    schedule.addEventListener("click", function() {
+      // taskText.className="text-decoration-line-through";
+      addTask1();
+     removeNode(li.id)
+      
+    });
+    taskActions.appendChild(schedule);
     
     li.appendChild(taskActions);
     
     taskList.appendChild(li);
     taskInput.value = "";
   }
+}
+
+function removeNode(id) {
+  let taskContainer = document.getElementById(id);
+  taskContainer.remove();
 }
 
 function addTask1() {
@@ -137,7 +156,7 @@ function addTask1() {
     doneBtn.className = "btn btn-success me-3";
     doneBtn.appendChild(document.createTextNode("Done"));
     doneBtn.addEventListener("click", function() {
-      taskText.classList.toggle("text-decoration-line-through");
+      taskText.className = "text-decoration-line-through";
     });
     taskActions.appendChild(doneBtn);
     
