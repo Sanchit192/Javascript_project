@@ -110,8 +110,8 @@ function addTask() {
     schedule.appendChild(document.createTextNode("Schedule"));
     schedule.addEventListener("click", function() {
       // taskText.className="text-decoration-line-through";
-      addTask1();
-     removeNode(li.id)
+      addTaskToUpcoming(taskText.innerText);
+     removeNode(li.id);
       
     });
     taskActions.appendChild(schedule);
@@ -177,3 +177,53 @@ function addTask1() {
     taskInput.value = "";
   }
 }
+function addTaskToUpcoming(taskText) {
+  var taskInput1 = document.getElementById("taskInput1");
+  var taskList1 = document.getElementById("taskList1");
+
+  if (taskText.trim() !== "") {
+    var li = document.createElement("li");
+    li.className = "list-group-item task-item";
+
+    var taskTextElem = document.createElement("div");
+    taskTextElem.className = "task-text h5";
+    taskTextElem.appendChild(document.createTextNode(taskText));
+    li.appendChild(taskTextElem);
+
+    var taskActions = document.createElement("div");
+    taskActions.className = "task-actions mt-3";
+
+    var removeBtn = document.createElement("button");
+    removeBtn.className = "btn btn-danger me-3";
+    removeBtn.appendChild(document.createTextNode("Remove"));
+    removeBtn.addEventListener("click", function() {
+      li.remove();
+    });
+    taskActions.appendChild(removeBtn);
+
+    var doneBtn = document.createElement("button");
+    doneBtn.className = "btn btn-success me-3";
+    doneBtn.appendChild(document.createTextNode("Done"));
+    doneBtn.addEventListener("click", function() {
+        taskTextElem.className="text-decoration-line-through";
+    });
+    taskActions.appendChild(doneBtn);
+
+    var editBtn = document.createElement("button");
+    editBtn.className = "btn btn-secondary me-3";
+    editBtn.appendChild(document.createTextNode("Edit"));
+    editBtn.addEventListener("click", function() {
+      var newText = prompt("Edit task:", taskTextElem.innerText);
+      if (newText !== null) {
+        taskTextElem.innerText = newText;
+      }
+    });
+    taskActions.appendChild(editBtn);
+
+    li.appendChild(taskActions);
+
+    taskList1.appendChild(li);
+    taskInput1.value = "";
+  }
+}
+
